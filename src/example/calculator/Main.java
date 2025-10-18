@@ -7,37 +7,81 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int result = 0;
+        int result = 0;// 결과값 저장 변수
+        int num1 = 0; // 연산할 값 저장 1
+        int num2 = 0; // 연산할 값 저장 2
+        String strOperator; // 연산자 유효성 검사 변수
+        char operator = ' '; // 연산자 저장용 변수
 
-
+        // 계산기 연산  반복문 시작
         while(true) {
-            // 사칙연산을 위한 값 입력받기
-            System.out.print("계산할 첫 번째 숫자를 입력해 주세요 :  ");
-            int num1 = sc.nextInt();
-
-            System.out.print("수행할 연산을 입력해 주세요 :  ");
-            // 유연성 증가를 위해 char로 하지 않고 String으로 하였습니다.            양날의 검인가...
-            String operator = sc.next();
-
-            System.out.print("계산할 두 번째 숫자를 입력해 주세요 :  ");
-            int num2 = sc.nextInt();
-
-
-            if (operator.equals("+") || operator.equals("더하기")) {
-                result = num1 + num2;
-            } else if (operator.equals("-") || operator.equals("빼기")) {
-                result = num1 - num2;
-            } else if (operator.equals("X") || operator.equals("x") || operator.equals("곱하기") || operator.equals("*")) {
-                result = num1 * num2;
-            } else if  (operator.equals("/") || operator.equals("나누기")) {
-                if(num2 == 0) {
-                    System.out.println("0으로 나눌 수 없습니다.");
-                } else {
-                    result = num1 / num2;
+            // 첫번째 값 입력받기
+            // 숫자만 입력받기 문자나 기호등 입력시 안내문 출력 후 다시 입력 제시
+            while (true) {
+                System.out.print("계산할 첫 번째 숫자를 입력해 주세요 :  ");
+                if (sc.hasNextInt()) {
+                    num1 = sc.nextInt();
+                    break;
+                } else {  // 유효성 검사 숫자가 아닐 시
+                    System.out.println("숫자를 입력해주세요");
+                    sc.next();
                 }
-            } else {
-                System.out.println("수행할 연산을 정확히 입력해주세요");
             }
+
+            // 연산자 입력받기
+            while (true) {
+                // 유연성 증가를 위해 char로 하지 않고 String으로 하였습니다..
+                System.out.print("수행할 연산을 입력해 주세요 :  ");
+                strOperator = sc.next().trim();
+                if(strOperator.equals("+") || strOperator.equals("더하기")) {
+                    operator = '+';
+                    break;
+                } else if (strOperator.equals("-") || strOperator.equals("빼기")) {
+                    operator = '-';
+                    break;
+                } else if (strOperator.equals("X") || strOperator.equals("x") || strOperator.equals("곱하기") || strOperator.equals("*")) {
+                   operator = '*';
+                    break;
+                } else if  (strOperator.equals("/") || strOperator.equals("나누기")) {
+                   operator = '/';
+                    break;
+                    } else { //유효성 검사 연산관련 문자가 아닐 시
+                    System.out.println("더하기, 빼기, 나누기, 곱하기 또는 연산기호만 입력해주세요");
+                        continue;
+                    }
+            }
+
+            while (true) {
+                // 두번째 값 입력받기
+                System.out.print("계산할 두 번째 숫자를 입력해 주세요 :  ");
+                if(sc.hasNextInt()) {
+                    num2 = sc.nextInt();
+                   if (operator == '/' && num2 == 0) { // 나누기일 때 0을 입력할 경우
+                       System.out.println("0으로 나눌 수 없습니다.");
+                       continue;
+                   }
+                   break;
+                } else { // 유효성 검사 숫자가 아닐 시
+                    System.out.println("숫자를 입력해주세요");
+                    sc.next();
+                  }
+
+
+
+            }
+            // 모든 입력이 맞게 입력됐을 때 연산기호에 맞게 계산 시작
+            if (operator == '+') {
+                result = num1 + num2;
+            } else if (operator == '-') {
+                result = num1 - num2;
+            } else if (operator == '*') {
+                result = num1 * num2;
+            } else if (operator == '/') {
+                result = num1 / num2;
+            }
+
+
+            // 결과 출력 및 반복 여부 확인
             System.out.println("결과 : " + result);
             System.out.println("계속 계산하시려면 아무 키나 종료하시려면 exit를 입력해주세요" );
             String answer = sc.next();
