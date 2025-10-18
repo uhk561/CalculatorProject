@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int result = 0;// 결과값 저장 변수
-        int num1 = 0; // 연산할 값 저장 1
+        long result = 0;// 결과값 저장 변수    // long으로 자료형 변경
+        int num1 = 0; // 연산할 값 저장 1    // 얘네도 변경할까 했지만 요구사항예시에 int인 걸로보아 입력값은 냅뒀습니다.
         int num2 = 0; // 연산할 값 저장 2
         String strOperator; // 연산자 유효성 검사 변수
         char operator = ' '; // 연산자 저장용 변수
@@ -23,7 +23,7 @@ public class Main {
                     num1 = sc.nextInt();
                     break;
                 } else {  // 유효성 검사 숫자가 아닐 시
-                    System.out.println("숫자를 입력해주세요");
+                    System.out.println("수가 너무 크거나 숫자가 아닙니다.");
                     sc.next();
                 }
             }
@@ -62,7 +62,7 @@ public class Main {
                    }
                    break;
                 } else { // 유효성 검사 숫자가 아닐 시
-                    System.out.println("숫자를 입력해주세요");
+                    System.out.println("수가 너무 크거나 숫자가 아닙니다.");
                     sc.next();
                   }
 
@@ -70,15 +70,33 @@ public class Main {
 
             }
             // 모든 입력이 맞게 입력됐을 때 연산기호에 맞게 계산 시작
+            // 연산식에 long으로 형변환 (큰 수로 테스트해보니 음수값이 나오는 걸보고)
             if (operator == '+') {
-                result = num1 + num2;
+                result = (long)num1 +(long)num2;
+                if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+                    System.out.println("결과가 범위벗어남");
+                    continue;
+                }
             } else if (operator == '-') {
-                result = num1 - num2;
+                result = (long)num1 - (long)num2;
+                if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+                    System.out.println("결과가 범위벗어남");
+                    continue;
+                }
             } else if (operator == '*') {
-                result = num1 * num2;
+                result = (long)num1 * (long)num2;
+                if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+                    System.out.println("결과가 범위벗어남");
+                    continue;
+                }
             } else if (operator == '/') {
-                result = num1 / num2;
+                result = (long)num1 / (long)num2;
+                if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+                    System.out.println("결과가 범위벗어남");
+                    continue;
+                }
             }
+
 
 
             // 결과 출력 및 반복 여부 확인
