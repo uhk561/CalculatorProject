@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Calculator calculator = new Calculator();
+
         Scanner sc = new Scanner(System.in);
         long result = 0;// 결과값 저장 변수    // long으로 자료형 변경
         int num1 = 0; // 연산할 값 저장 1    // 얘네도 변경할까 했지만 요구사항예시에 int인 걸로보아 입력값은 냅뒀습니다.
@@ -13,7 +15,9 @@ public class Main {
         String strOperator; // 연산자 유효성 검사 변수
         char operator = ' '; // 연산자 저장용 변수
 
-        // 계산기 연산  반복문 시작
+        long result1 = calculator.calculate(20,0,'/');
+        System.out.println(result1);
+        /*// 계산기 연산  반복문 시작
         while(true) {
             // 첫번째 값 입력받기
             // 숫자만 입력받기 문자나 기호등 입력시 안내문 출력 후 다시 입력 제시
@@ -107,7 +111,7 @@ public class Main {
                 System.out.println("종료되었습니다.");
                 break;
             }
-        }
+        }*/
 
     }
 }
