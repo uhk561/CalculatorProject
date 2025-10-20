@@ -6,7 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Calculator calculator = new Calculator();
+        //Calculator calculator = new Calculator();
+        ArithmeticCalculator calculator = new ArithmeticCalculator();
+
 
         Scanner sc = new Scanner(System.in);
         long result = 0;// 결과값 저장 변수    // long으로 자료형 변경
@@ -15,8 +17,6 @@ public class Main {
         String strOperator; // 연산자 유효성 검사 변수
         char operator = ' '; // 연산자 저장용 변수
 
-        //long result1 = calculator.calculate(20,0,'/');
-        //System.out.println(result1);
 
 
 
