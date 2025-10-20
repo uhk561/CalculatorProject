@@ -78,17 +78,41 @@ public class Main {
                 result = calculator.calculate(num1,num2,operator);
 
 
-            // 결과 출력 및 반복 여부 확인
-            System.out.println("결과 : " + result);
-            System.out.println("계속 계산하시려면 아무 키나 종료하시려면 exit를 입력해주세요" );
+            // 결과 출력 및 반복 여부 확인 메뉴
+            System.out.println("\n\n\n결과 : " + result  + "\n\n\n");
+            System.out.println("1. 계속 계산하기");
+            System.out.println("2. 종료하기(exit)");
+            System.out.println("3. 저장된 결과 보기(list)");
+            System.out.println("4. 첫번째로 저장된 결과 삭제하기(remove)");
             String answer = sc.next();
-            if(answer.equals("exit")) {
-                System.out.println("종료되었습니다.");
-                break;
+            switch (answer) {
+                case "1":
+                    break;
+
+                case "2":
+                case "exit":
+                case "종료하기":
+                    System.out.println("종료되었습니다.");
+                    return;
+
+                case "3":
+                case "list":
+                    System.out.println("저장된 연산 결과 : " + calculator.getResults());
+                    System.out.println("삭제하려면 'remove' 입력, 계속하려면 아무 키나 입력");
+                    answer = sc.next();
+                    if(answer.equals("remove")) {
+                        calculator.removeResults();
+                    }
+                    break;
+
+                case "4":
+                case "remove":
+                    calculator.removeResults();
+                    break;
+
 
             }
-            System.out.println("저장된 연산 결과 : " + calculator.getResults());
-            calculator.removeResults(); // 삭제 기능
+
         }
 
     }
